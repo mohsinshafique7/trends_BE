@@ -1,0 +1,84 @@
+Boom Depricated
+Redis Work in models/index
+
+
+
+TODOs
+Test config fileroot in models/index
+Index file was using import from changed with cont require
+
+
+
+For Production Geeky
+  "scripts": {
+    "test": "npm test",
+    "build": "babel app/index.js --out-dir prd",
+    "start": "npm run build && nodemon prd/index.js",
+    "serve": "node prd/index.js"
+  },
+  
+
+
+"use strict"
+module.exports = (sequelize, DataTypes) => {
+  const coreProduct = sequelize.define(
+    "coreProduct",
+    {
+      name: {
+        type: DataTypes.STRING,
+      },
+      description: {
+        type: DataTypes.STRING,
+        // allowNull: false,
+        // defaultValue: 'Core'
+      },
+      price: {
+        type: DataTypes.FLOAT,
+        // allowNull: true
+      },
+      image: {
+        type: DataTypes.STRING,
+        // defaultValue: false
+      },
+      retailerId: {
+        type: DataTypes.INTEGER,
+      },
+    },
+    {
+      tableName: "coreProducts",
+    }
+  )
+  coreProduct.associate = function (models) {
+    coreProduct.belongsTo(models.retailer, {
+      foreignKey: "retailerId",
+      as: "retailer",
+    })
+  }
+  return coreProduct
+}
+
+////Retailers
+
+"use strict"
+module.exports = (sequelize, DataTypes) => {
+  const retailer = sequelize.define(
+    "retailer",
+    {
+      name: {
+        type: DataTypes.STRING,
+      },
+      description: {
+        type: DataTypes.STRING,
+      },
+    },
+    {
+      tableName: "retailer",
+    }
+  )
+  retailer.associate = function (models) {
+    retailer.hasMany(models.coreProduct, {
+      as: "coreProducts",
+    })
+  }
+  return retailer
+}

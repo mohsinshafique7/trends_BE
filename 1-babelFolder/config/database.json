@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "8iC1t4socjXyOjr72HlQ",
+    "database": "postgres",
+    "host": "brandnudge-match-db.cluster-cgtow2b7iejj.eu-north-1.rds.amazonaws.com",
+    "dialect": "postgres"
+  }
+}
