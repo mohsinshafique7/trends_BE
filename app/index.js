@@ -17,7 +17,6 @@ import "regenerator-runtime/runtime"
 const error = _debugger("koa2-starter:error")
 const debug = _debugger("koa2-starter:debug")
 const app = new Koa()
-
 // const static_pages = new Koa()
 // console.log("Dir", __dirname + "/buildFrontEnd/build")
 // static_pages.use(serve(__dirname + "/buildFrontEnd/build")) //serve the build directory
