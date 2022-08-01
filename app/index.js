@@ -16,6 +16,8 @@ import "core-js/stable"
 import "regenerator-runtime/runtime"
 const error = _debugger("koa2-starter:error")
 const debug = _debugger("koa2-starter:debug")
+import AuthRouter from "./src/auth/router"
+import trendsRouter from "./src/googleTrends/router"
 const app = new Koa()
 // const static_pages = new Koa()
 // console.log("Dir", __dirname + "/buildFrontEnd/build")
@@ -47,7 +49,8 @@ db.sequelize.authenticate().then(() => {
     .use(convert(koaBody({ jsonLimit: "30mb", multipart: true })))
     // .use(mount("/", static_pages))
     .listen(SERVER.port)
-
+  // app.use(AuthRouter)
+  // app.use(trendsRouter)
   fs.readdirSync(`${__dirname}/src`).forEach((mod) => {
     try {
       app.use(require(`${__dirname}/src/${mod}/router.js`).default) // eslint-disable-line

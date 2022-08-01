@@ -1,9 +1,9 @@
 import Boom from "boom"
 import GoogleTrendService from "../../services/googleTrends/googleTrends.service"
 import HttpsProxyAgent from "https-proxy-agent"
-import _ from "loadash"
 export default class GoogleTrendsController {
   static async GetIntrestByRegion(ctx, next) {
+    console.log("Intrest")
     const {
       request: {
         body: { searchValues, startDate, endDate, region, category },

@@ -30,6 +30,10 @@ require("core-js/stable");
 
 require("regenerator-runtime/runtime");
 
+var _router2 = _interopRequireDefault(require("./src/auth/router"));
+
+var _router3 = _interopRequireDefault(require("./src/googleTrends/router"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -89,7 +93,8 @@ _models["default"].sequelize.authenticate().then(function () {
     jsonLimit: "30mb",
     multipart: true
   }))) // .use(mount("/", static_pages))
-  .listen(_app.SERVER.port);
+  .listen(_app.SERVER.port); // app.use(AuthRouter)
+  // app.use(trendsRouter)
 
   _fs["default"].readdirSync("".concat(__dirname, "/src")).forEach(function (mod) {
     try {

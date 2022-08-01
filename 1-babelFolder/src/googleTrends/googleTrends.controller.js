@@ -11,8 +11,6 @@ var _googleTrends = _interopRequireDefault(require("../../services/googleTrends/
 
 var _httpsProxyAgent = _interopRequireDefault(require("https-proxy-agent"));
 
-var _loadash = _interopRequireDefault(require("loadash"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -52,74 +50,75 @@ var GoogleTrendsController = /*#__PURE__*/function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                console.log("Intrest");
                 _ctx$request$body = ctx.request.body, searchValues = _ctx$request$body.searchValues, startDate = _ctx$request$body.startDate, endDate = _ctx$request$body.endDate, region = _ctx$request$body.region, category = _ctx$request$body.category;
 
                 if (searchValues) {
-                  _context.next = 3;
+                  _context.next = 4;
                   break;
                 }
 
                 throw _boom["default"].notFound("Search values required");
 
-              case 3:
+              case 4:
                 if (startDate) {
-                  _context.next = 5;
+                  _context.next = 6;
                   break;
                 }
 
                 throw _boom["default"].notFound("Start date required");
 
-              case 5:
+              case 6:
                 if (endDate) {
-                  _context.next = 7;
+                  _context.next = 8;
                   break;
                 }
 
                 throw _boom["default"].notFound("End date required");
 
-              case 7:
+              case 8:
                 if (region) {
-                  _context.next = 9;
+                  _context.next = 10;
                   break;
                 }
 
                 throw _boom["default"].notFound("Region required");
 
-              case 9:
+              case 10:
                 if (!(category == undefined)) {
-                  _context.next = 11;
+                  _context.next = 12;
                   break;
                 }
 
                 throw _boom["default"].notFound("Category required");
 
-              case 11:
+              case 12:
                 params = searchValues;
                 grossData = [];
                 result = [];
                 i = 0;
 
-              case 15:
+              case 16:
                 if (!(i < params.length)) {
-                  _context.next = 25;
+                  _context.next = 26;
                   break;
                 }
 
                 proxyAgent = new _httpsProxyAgent["default"]("https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225");
                 chunk = params.slice(i, i + 5);
-                _context.next = 20;
+                _context.next = 21;
                 return _googleTrends["default"].getIntrestByRegion(chunk, startDate, endDate, region, category, proxyAgent);
 
-              case 20:
+              case 21:
                 result = _context.sent;
                 grossData.push(result);
 
-              case 22:
+              case 23:
                 i += 5;
-                _context.next = 15;
+                _context.next = 16;
                 break;
 
-              case 25:
+              case 26:
                 groupedData = [];
                 initialData = [].concat.apply([], grossData);
 
@@ -147,27 +146,27 @@ var GoogleTrendsController = /*#__PURE__*/function () {
                 result1 = [];
                 _i = 0;
 
-              case 32:
+              case 33:
                 if (!(_i < params.length)) {
-                  _context.next = 42;
+                  _context.next = 43;
                   break;
                 }
 
                 _proxyAgent = new _httpsProxyAgent["default"]("https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225");
                 _chunk = params.slice(_i, _i + 5);
-                _context.next = 37;
+                _context.next = 38;
                 return _googleTrends["default"].getIntrestOverTime(_chunk, startDate, endDate, region, category, _proxyAgent);
 
-              case 37:
+              case 38:
                 result1 = _context.sent;
                 grossData1.push(result1);
 
-              case 39:
+              case 40:
                 _i += 5;
-                _context.next = 32;
+                _context.next = 33;
                 break;
 
-              case 42:
+              case 43:
                 groupedData1 = [];
                 initialData1 = [].concat.apply([], grossData1);
 
@@ -208,10 +207,10 @@ var GoogleTrendsController = /*#__PURE__*/function () {
                   sortedData: sortedData,
                   test: "hello"
                 };
-                _context.next = 51;
+                _context.next = 52;
                 return next();
 
-              case 51:
+              case 52:
               case "end":
                 return _context.stop();
             }
