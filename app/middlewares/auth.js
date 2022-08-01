@@ -28,7 +28,7 @@ export default async function Auth(ctx, next) {
 
   const user = await UserService.GetUserById(decoded.userId)
   if (!user) {
-    ctx.status = 401
+    ctx.status = 403
     ctx.body = TOKEN_NOT_VALID
     return ctx
   }

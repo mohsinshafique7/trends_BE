@@ -11,6 +11,8 @@ var _googleTrends = _interopRequireDefault(require("../../services/googleTrends/
 
 var _httpsProxyAgent = _interopRequireDefault(require("https-proxy-agent"));
 
+var _loadash = _interopRequireDefault(require("loadash"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -44,66 +46,66 @@ var GoogleTrendsController = /*#__PURE__*/function () {
     key: "GetIntrestByRegion",
     value: function () {
       var _GetIntrestByRegion = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(ctx, next) {
-        var _ctx$request$body, searchValues, startDate, endDate, region, category, proxyAgent, params, grossData, result, i, chunk, groupedData, initialData, _loop, z, grossData1, result1, _i, _chunk, groupedData1, initialData1, _loop2, _z, sortedData;
+        var _ctx$request$body, searchValues, startDate, endDate, region, category, params, grossData, result, i, proxyAgent, chunk, groupedData, initialData, _loop, z, grossData1, result1, _i, _proxyAgent, _chunk, groupedData1, initialData1, _loop2, _z, sortedData;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _ctx$request$body = ctx.request.body, searchValues = _ctx$request$body.searchValues, startDate = _ctx$request$body.startDate, endDate = _ctx$request$body.endDate, region = _ctx$request$body.region, category = _ctx$request$body.category;
-                proxyAgent = new _httpsProxyAgent["default"]("https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225");
 
                 if (searchValues) {
-                  _context.next = 4;
+                  _context.next = 3;
                   break;
                 }
 
                 throw _boom["default"].notFound("Search values required");
 
-              case 4:
+              case 3:
                 if (startDate) {
-                  _context.next = 6;
+                  _context.next = 5;
                   break;
                 }
 
                 throw _boom["default"].notFound("Start date required");
 
-              case 6:
+              case 5:
                 if (endDate) {
-                  _context.next = 8;
+                  _context.next = 7;
                   break;
                 }
 
                 throw _boom["default"].notFound("End date required");
 
-              case 8:
+              case 7:
                 if (region) {
-                  _context.next = 10;
+                  _context.next = 9;
                   break;
                 }
 
                 throw _boom["default"].notFound("Region required");
 
-              case 10:
+              case 9:
                 if (!(category == undefined)) {
-                  _context.next = 12;
+                  _context.next = 11;
                   break;
                 }
 
                 throw _boom["default"].notFound("Category required");
 
-              case 12:
+              case 11:
                 params = searchValues;
                 grossData = [];
                 result = [];
                 i = 0;
 
-              case 16:
+              case 15:
                 if (!(i < params.length)) {
                   _context.next = 25;
                   break;
                 }
 
+                proxyAgent = new _httpsProxyAgent["default"]("https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225");
                 chunk = params.slice(i, i + 5);
                 _context.next = 20;
                 return _googleTrends["default"].getIntrestByRegion(chunk, startDate, endDate, region, category, proxyAgent);
@@ -114,7 +116,7 @@ var GoogleTrendsController = /*#__PURE__*/function () {
 
               case 22:
                 i += 5;
-                _context.next = 16;
+                _context.next = 15;
                 break;
 
               case 25:
@@ -147,24 +149,25 @@ var GoogleTrendsController = /*#__PURE__*/function () {
 
               case 32:
                 if (!(_i < params.length)) {
-                  _context.next = 41;
+                  _context.next = 42;
                   break;
                 }
 
+                _proxyAgent = new _httpsProxyAgent["default"]("https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225");
                 _chunk = params.slice(_i, _i + 5);
-                _context.next = 36;
-                return _googleTrends["default"].getIntrestOverTime(_chunk, startDate, endDate, region, category, proxyAgent);
+                _context.next = 37;
+                return _googleTrends["default"].getIntrestOverTime(_chunk, startDate, endDate, region, category, _proxyAgent);
 
-              case 36:
+              case 37:
                 result1 = _context.sent;
                 grossData1.push(result1);
 
-              case 38:
+              case 39:
                 _i += 5;
                 _context.next = 32;
                 break;
 
-              case 41:
+              case 42:
                 groupedData1 = [];
                 initialData1 = [].concat.apply([], grossData1);
 
@@ -204,10 +207,10 @@ var GoogleTrendsController = /*#__PURE__*/function () {
                   groupedData: groupedData,
                   sortedData: sortedData
                 };
-                _context.next = 50;
+                _context.next = 51;
                 return next();
 
-              case 50:
+              case 51:
               case "end":
                 return _context.stop();
             }
@@ -220,76 +223,6 @@ var GoogleTrendsController = /*#__PURE__*/function () {
       }
 
       return GetIntrestByRegion;
-    }()
-  }, {
-    key: "GetIntrestOverTime",
-    value: function () {
-      var _GetIntrestOverTime = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(ctx, next) {
-        var _ctx$request$body2, searchValues, startDate, endDate, region, category, proxyAgent, params;
-
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _ctx$request$body2 = ctx.request.body, searchValues = _ctx$request$body2.searchValues, startDate = _ctx$request$body2.startDate, endDate = _ctx$request$body2.endDate, region = _ctx$request$body2.region, category = _ctx$request$body2.category;
-
-                if (searchValues) {
-                  _context2.next = 3;
-                  break;
-                }
-
-                throw _boom["default"].notFound("Search values required");
-
-              case 3:
-                if (startDate) {
-                  _context2.next = 5;
-                  break;
-                }
-
-                throw _boom["default"].notFound("Start date required");
-
-              case 5:
-                if (endDate) {
-                  _context2.next = 7;
-                  break;
-                }
-
-                throw _boom["default"].notFound("End date required");
-
-              case 7:
-                if (region) {
-                  _context2.next = 9;
-                  break;
-                }
-
-                throw _boom["default"].notFound("Region required");
-
-              case 9:
-                if (!(category == undefined)) {
-                  _context2.next = 11;
-                  break;
-                }
-
-                throw _boom["default"].notFound("Category required");
-
-              case 11:
-                proxyAgent = new _httpsProxyAgent["default"]("https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225");
-                params = searchValues;
-                return _context2.abrupt("return", sortedData);
-
-              case 14:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
-
-      function GetIntrestOverTime(_x3, _x4) {
-        return _GetIntrestOverTime.apply(this, arguments);
-      }
-
-      return GetIntrestOverTime;
     }()
   }]);
 

@@ -1,6 +1,7 @@
 import Boom from "boom"
 import GoogleTrendService from "../../services/googleTrends/googleTrends.service"
 import HttpsProxyAgent from "https-proxy-agent"
+import _ from "loadash"
 export default class GoogleTrendsController {
   static async GetIntrestByRegion(ctx, next) {
     const {
@@ -8,9 +9,7 @@ export default class GoogleTrendsController {
         body: { searchValues, startDate, endDate, region, category },
       },
     } = ctx
-    let proxyAgent = new HttpsProxyAgent(
-      "https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225"
-    )
+
     if (!searchValues) throw Boom.notFound("Search values required")
     if (!startDate) throw Boom.notFound("Start date required")
     if (!endDate) throw Boom.notFound("End date required")
@@ -20,6 +19,9 @@ export default class GoogleTrendsController {
     let grossData = []
     let result = []
     for (let i = 0; i < params.length; i += 5) {
+      let proxyAgent = new HttpsProxyAgent(
+        "https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225"
+      )
       const chunk = params.slice(i, i + 5)
       result = await GoogleTrendService.getIntrestByRegion(
         chunk,
@@ -47,6 +49,9 @@ export default class GoogleTrendsController {
     let grossData1 = []
     let result1 = []
     for (let i = 0; i < params.length; i += 5) {
+      let proxyAgent = new HttpsProxyAgent(
+        "https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225"
+      )
       const chunk = params.slice(i, i + 5)
       result1 = await GoogleTrendService.getIntrestOverTime(
         chunk,
@@ -82,24 +87,5 @@ export default class GoogleTrendsController {
     sortedData = sortedData.filter((data) => data.name)
     ctx.body = { groupedData, sortedData }
     await next()
-  }
-
-  static async GetIntrestOverTime(ctx, next) {
-    const {
-      request: {
-        body: { searchValues, startDate, endDate, region, category },
-      },
-    } = ctx
-    if (!searchValues) throw Boom.notFound("Search values required")
-    if (!startDate) throw Boom.notFound("Start date required")
-    if (!endDate) throw Boom.notFound("End date required")
-    if (!region) throw Boom.notFound("Region required")
-    if (category == undefined) throw Boom.notFound("Category required")
-    let proxyAgent = new HttpsProxyAgent(
-      "https://lum-customer-hl_6f3a1d08-zone-static-country-gb:rmpegpso2r78@zproxy.lum-superproxy.io:22225"
-    )
-    let params = searchValues
-
-    return sortedData
   }
 }

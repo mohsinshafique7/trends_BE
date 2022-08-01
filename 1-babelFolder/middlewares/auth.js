@@ -67,7 +67,7 @@ function _Auth() {
               break;
             }
 
-            ctx.status = 401;
+            ctx.status = 403;
             ctx.body = _custom.TOKEN_NOT_VALID;
             return _context.abrupt("return", ctx);
 

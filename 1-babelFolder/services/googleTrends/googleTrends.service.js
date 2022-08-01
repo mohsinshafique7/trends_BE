@@ -41,7 +41,7 @@ var GoogleTrendService = /*#__PURE__*/function () {
                   geo: region,
                   resolution: "REGIONS",
                   category: category,
-                  proxyAgent: proxyAgent
+                  agent: proxyAgent
                 });
 
               case 2:

@@ -16,7 +16,7 @@ export default class GoogleTrendService {
       geo: region,
       resolution: "REGIONS",
       category: category,
-      proxyAgent,
+      agent: proxyAgent,
     })
 
     result = JSON.parse(result).default.geoMapData.reduce((ids, things) => {
