@@ -85,7 +85,7 @@ export default class GoogleTrendsController {
       return acc
     }, [])
     sortedData = sortedData.filter((data) => data.name)
-    ctx.body = { groupedData, sortedData }
+    ctx.body = { groupedData, sortedData, test: "hello" }
     await next()
   }
 }

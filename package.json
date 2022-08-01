@@ -5,7 +5,8 @@
   "main": "app/index.js",
   "scripts": {
     "start": "babel app -w --out-dir 1-babelFolder --copy-files",
-    "dev-serve": "nodemon  --exec babel-node 1-babelFolder/index.js"
+    "dev-serve": "nodemon  --exec babel-node 1-babelFolder/index.js",
+    "pm2": "pm2 start 1-babelFolder/index.js"
   },
   "author": "",
   "license": "ISC",

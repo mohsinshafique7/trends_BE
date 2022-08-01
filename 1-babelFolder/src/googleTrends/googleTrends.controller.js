@@ -205,7 +205,8 @@ var GoogleTrendsController = /*#__PURE__*/function () {
                 });
                 ctx.body = {
                   groupedData: groupedData,
-                  sortedData: sortedData
+                  sortedData: sortedData,
+                  test: "hello"
                 };
                 _context.next = 51;
                 return next();
